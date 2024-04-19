@@ -1,14 +1,8 @@
 import openpyxl as op
 import urllib
-import PyPDF2
-from pathlib import Path
-import shutil, os
 import os.path
-import glob
 from os import listdir
 import concurrent.futures
-import requests
-import threading
 import time
 
 
@@ -132,16 +126,7 @@ def GRI_pdf_downloader(file, path):
 #GRI_pdf_downloader(excel_file, folder)
 
 
-# Don't think this will work :(
-def scraping_func():
-    ###should just do a google search for each pdf title and check ~5 first links if a pdf download link is available
-    ### IF THERE IS TIME OBVIOUSLY, NOT STRICTLY NECCESARY!
-    ### POSSIBLY NOT FEASABLE TO FIND CORRECT PDFS!!!!
-    
-    pass
 
-
-#### SHOULD DO SAME AS ABOVE BUT WITH MULTITHREADING
 def GRI_pdf_multi_downloader(file, path):
     """
     Main function downloading GRI pdf files. NOW WITH MULTITHREADING!
@@ -214,7 +199,7 @@ def GRI_pdf_multi_downloader(file, path):
     if __name__ == '__main__':
         index_range = list(range(2, max_rows+1)) 
         
-        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=16) as executor:
             executor.map(download_row, index_range)
     
     meta.save('MetaData.xlsx')
@@ -226,6 +211,3 @@ def GRI_pdf_multi_downloader(file, path):
      
 GRI_pdf_multi_downloader(excel_file, folder)
     
-
-    
-#GRI_pdf_multi_downloader(excel_file, folder)
