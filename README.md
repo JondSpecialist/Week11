@@ -22,7 +22,6 @@ On consecutive runs of the file, pdf's that are already contained in the 'pdf_do
  - metadata_excel
  - GRI_pdf_downloader
  - GRI_pdf_multi_downloader
- - (and the empy function scraping func)
 
 get_rows_excel is a yield function, it takes an excel file and returns a generator object that yields single rows from the excel file using openpyxl.
 
